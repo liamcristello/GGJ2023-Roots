@@ -9,15 +9,21 @@ public class PlayerCombat : MonoBehaviour
     [SerializeField] float atkLength = 0.25f; //How long atk takes to finish
     [SerializeField] float atkRange = 10.0f ;  //Range of atk
 
+    [SerializeField] GameObject swordSprite;
     [SerializeField] GameObject swordHB;
+
+    BoxCollider2D swordCollider;
     SpriteRenderer swordSwing;
     Animator swordAnim;
+
+    //public bool swingFlag = false;
 
     // Start is called before the first frame update
     void Start()
     {
-        swordSwing = swordHB.GetComponent<SpriteRenderer>();
-        swordAnim = GetComponent<Animator>();
+        swordSwing = swordSprite.GetComponent<SpriteRenderer>();
+        swordAnim = swordSprite.GetComponent<Animator>();
+        swordCollider = swordHB.GetComponent<BoxCollider2D>();
     }
 
     // Update is called once per frame
@@ -26,6 +32,7 @@ public class PlayerCombat : MonoBehaviour
         if(atkTimer <= 0)
         {
             PlayerAttak();
+            //swingFlag = false;
             //swordAnim.
         }
         atkTimer -= Time.deltaTime;
@@ -33,13 +40,15 @@ public class PlayerCombat : MonoBehaviour
 
     void SwingAnimation()
     {
+        //WORK ON THIS
         //swordSwing.enabled = true;
         if (atkTimer <= 0)
         {
-            
+            swordCollider.enabled = false;
             //swordSwing.enabled = false;
         }
-        swordAnim.Play("Base Layer.swing", 0, 0.0f);
+        //swordAnim.Play("Base Layer.swing", 0, 0.0f);
+        //swordAnim.SetTrigger("Swing");
     }
 
     void PlayerAttak()
@@ -49,6 +58,9 @@ public class PlayerCombat : MonoBehaviour
             Debug.Log("Attack!");
             atkTimer = atkLength;
             SwingAnimation();
+            swordAnim.SetTrigger("Swing");
+
+            swordCollider.enabled = true;
         }
     }
 }
