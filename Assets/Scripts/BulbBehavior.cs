@@ -8,23 +8,20 @@ public class BulbBehavior : MonoBehaviour
     private float growthTimer;
 
     public GameObject growTarget;
-    public GameObject rootExtender;
-    private float rootGrowthStep;
     public float rootGrowthSpeed;
     public GameObject rootOrigin;
+    public GameObject rootEnd;
     public GameObject rootSegmentPrefab;
     public List<GameObject> rootSegmentsList;
+    public float rootGrowthStepX;
+    public float rootGrowthStepY;
+    public Animator rootEndAnim;
 
     public bool atEnd;
 
     // Start is called before the first frame update
     void Start()
     {
-        rootGrowthStep = rootSegmentPrefab.GetComponent<SpriteRenderer>().localBounds.extents.y * 2;
-        Debug.Log(gameObject.name + ": " + rootGrowthStep);
-
-        atEnd = false;
-
         growthTimer = 0.0f;
         if (timeToGrowSegment <= 0.0f)
         {
@@ -38,10 +35,15 @@ public class BulbBehavior : MonoBehaviour
     {
         growthTimer += Time.deltaTime;
 
-        if (growthTimer > timeToGrowSegment && !atEnd)
+        if (growthTimer > timeToGrowSegment && !rootEnd.GetComponent<RootEndBehavior>().atEnd)
         {
             Grow();
             growthTimer = 0.0f;
+        }
+
+        if (Input.GetMouseButtonDown(0) && rootSegmentsList.Count > 1)
+        {
+            Retract();
         }
     }
 
@@ -49,9 +51,23 @@ public class BulbBehavior : MonoBehaviour
     {
         foreach (var rootSegment in rootSegmentsList)
         {
-            rootSegment.transform.position = Vector2.MoveTowards(rootSegment.transform.position, growTarget.transform.position, rootGrowthStep);
+            float newX = rootSegment.transform.position.x + rootGrowthStepX;
+            float newY = rootSegment.transform.position.y + rootGrowthStepY;
+            rootSegment.transform.position = new Vector3(newX, newY, rootSegment.transform.position.z);
         }
         AddRootSegment();
+    }
+
+    void Retract()
+    {
+        RemoveInnermostRootSegment();
+        foreach (var rootSegment in rootSegmentsList)
+        {
+            float newX = rootSegment.transform.position.x + (-1 * rootGrowthStepX);
+            float newY = rootSegment.transform.position.y + (-1 * rootGrowthStepY);
+            rootSegment.transform.position = new Vector3(newX, newY, rootSegment.transform.position.z);
+        }
+        //growthTimer = 0.0f;
     }
 
     void AddRootSegment()
@@ -59,10 +75,13 @@ public class BulbBehavior : MonoBehaviour
         GameObject newRootSeg = Instantiate(rootSegmentPrefab, rootOrigin.transform);
 
         rootSegmentsList.Add(newRootSeg);
+
+        rootEndAnim.Play("RootEndIdle");
     }
 
-    void RemoveRootSegment()
+    void RemoveInnermostRootSegment()
     {
+        Destroy(rootSegmentsList[rootSegmentsList.Count - 1]);
         rootSegmentsList.RemoveAt(rootSegmentsList.Count - 1);
     }
 }
