@@ -10,13 +10,20 @@ public class BulbBehavior : MonoBehaviour
     public GameObject growTarget;
     public GameObject rootExtender;
     private float rootGrowthStep;
-    public GameObject rootSegment;
-    public GameObject rootEnd;
+    public float rootGrowthSpeed;
+    public GameObject rootOrigin;
+    public GameObject rootSegmentPrefab;
+    public List<GameObject> rootSegmentsList;
+
+    public bool atEnd;
 
     // Start is called before the first frame update
     void Start()
     {
-        rootGrowthStep = rootExtender.GetComponent<SpriteRenderer>().bounds.size.y;
+        rootGrowthStep = rootSegmentPrefab.GetComponent<SpriteRenderer>().localBounds.extents.y * 2;
+        Debug.Log(gameObject.name + ": " + rootGrowthStep);
+
+        atEnd = false;
 
         growthTimer = 0.0f;
         if (timeToGrowSegment <= 0.0f)
@@ -31,7 +38,7 @@ public class BulbBehavior : MonoBehaviour
     {
         growthTimer += Time.deltaTime;
 
-        if (growthTimer > timeToGrowSegment)
+        if (growthTimer > timeToGrowSegment && !atEnd)
         {
             Grow();
             growthTimer = 0.0f;
@@ -40,6 +47,22 @@ public class BulbBehavior : MonoBehaviour
 
     void Grow()
     {
-        rootExtender.transform.position = Vector2.MoveTowards(rootExtender.transform.position, growTarget.transform.position, rootGrowthStep);
+        foreach (var rootSegment in rootSegmentsList)
+        {
+            rootSegment.transform.position = Vector2.MoveTowards(rootSegment.transform.position, growTarget.transform.position, rootGrowthStep);
+        }
+        AddRootSegment();
+    }
+
+    void AddRootSegment()
+    {
+        GameObject newRootSeg = Instantiate(rootSegmentPrefab, rootOrigin.transform);
+
+        rootSegmentsList.Add(newRootSeg);
+    }
+
+    void RemoveRootSegment()
+    {
+        rootSegmentsList.RemoveAt(rootSegmentsList.Count - 1);
     }
 }
