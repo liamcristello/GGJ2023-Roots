@@ -61,6 +61,12 @@ public class PlayerCombat : MonoBehaviour
             swordAnim.SetTrigger("Swing");
 
             swordCollider.enabled = true;
+            Invoke("disableHB", atkLength);
         }
+    }
+
+    void disableHB()
+    {
+        swordCollider.enabled = false;
     }
 }
