@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//author: Quang
+
 public class PlayerController : MonoBehaviour
 {
     Rigidbody2D body;
@@ -9,7 +11,7 @@ public class PlayerController : MonoBehaviour
     float horizontal;
     float vertical;
     [SerializeField] float moveLimiter = 0.7f;
-    [SerializeField] float runSpeed = 20.0f;
+    [SerializeField] float runSpeed = 10.0f;
 
     void Start()
     {
