@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
     float horizontal;
     float vertical;
     [SerializeField] float moveLimiter = 0.7f;
-    [SerializeField] float runSpeed = 10.0f;
+    [SerializeField] float runSpeed = 300.0f;
 
     void Start()
     {
@@ -34,6 +34,6 @@ public class PlayerController : MonoBehaviour
             vertical *= moveLimiter;
         }
 
-        body.velocity = new Vector2(horizontal * runSpeed, vertical * runSpeed);
+        body.velocity = new Vector2(horizontal * runSpeed * Time.deltaTime, vertical * runSpeed * Time.deltaTime);
     }
 }
