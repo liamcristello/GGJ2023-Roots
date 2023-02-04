@@ -27,8 +27,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2352926414378110687}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.73, y: -0.31533, z: 0.00071956124}
-  m_LocalScale: {x: 4.479687, y: 2.2, z: 1}
+  m_LocalPosition: {x: 2.19, y: -0.31533, z: 0.00071956124}
+  m_LocalScale: {x: 3.8637302, y: 2.2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 9220388912404903967}
@@ -124,6 +124,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f032a2d2a22ef0546b0912afe8f7bf9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 2461876669654639490}
+  swordWhole: {fileID: 3559607905696316122}
 --- !u!1 &2461876669654639490
 GameObject:
   m_ObjectHideFlags: 0
@@ -288,7 +290,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   atkTimer: 0
-  atkLength: 0.5
+  atkLength: 0.25
   atkRange: 10
   swordSprite: {fileID: 4263167954854017058}
   swordHB: {fileID: 2352926414378110687}
@@ -335,9 +337,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3559607905696316122}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.30736613, y: 0.40532556, z: -0.010719561}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.04, y: 0.21573, z: 0.0020727}
+  m_LocalScale: {x: 0.63761, y: 0.63761, z: 0.63761}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8329363088582412448}
