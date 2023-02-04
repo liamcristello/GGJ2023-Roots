@@ -35,7 +35,7 @@ public class SwordBehavior : MonoBehaviour
     private void OnCollisionStay2D(Collision2D collision)
     {
         swordHB.enabled = false;
-        if (collision.gameObject.CompareTag("Enemy"))
+        if (collision.gameObject.CompareTag("Root"))
         {
             Debug.Log("SLAIN AN ENEMY");
         }
