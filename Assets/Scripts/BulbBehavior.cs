@@ -11,11 +11,17 @@ public class BulbBehavior : MonoBehaviour
     public float rootGrowthSpeed;
     public GameObject rootOrigin;
     public GameObject rootEnd;
+    public GameObject damagedRootEnd;
     public GameObject rootSegmentPrefab;
+    public GameObject damagedRootSegmentPrefab;
     public List<GameObject> rootSegmentsList;
+    public List<GameObject> damagedRootSegmentsList;
     public float rootGrowthStepX;
     public float rootGrowthStepY;
     public Animator rootEndAnim;
+    public Animator damagedRootEndAnim;
+    private bool isBeingDamaged;
+    public float damageFlashDuration;
 
     public bool atEnd;
 
@@ -28,6 +34,10 @@ public class BulbBehavior : MonoBehaviour
             // Hard-coded default in event of float not being set
             timeToGrowSegment = 4.0f;
         }
+
+        SetGrowSpeed(timeToGrowSegment);
+
+        StartCoroutine(GrowRoots());
     }
 
     // Update is called once per frame
@@ -37,51 +47,137 @@ public class BulbBehavior : MonoBehaviour
 
         if (growthTimer > timeToGrowSegment && !rootEnd.GetComponent<RootEndBehavior>().atEnd)
         {
-            Grow();
+            //Grow();
             growthTimer = 0.0f;
         }
 
         if (Input.GetMouseButtonDown(0) && rootSegmentsList.Count > 1)
         {
-            Retract();
+            TakeDamage();
         }
     }
 
-    void Grow()
+    void SetGrowSpeed(float timeToGrowSegment)
+    {
+        rootEndAnim.speed = 1 / timeToGrowSegment;
+        damagedRootEndAnim.speed = 1 / timeToGrowSegment;
+    }
+
+    IEnumerator GrowRoots()
+    {
+        yield return new WaitForSecondsRealtime(timeToGrowSegment);
+
+        if (!rootEnd.GetComponent<RootEndBehavior>().atEnd)
+        {
+            LengthenRoot();
+            StartCoroutine(GrowRoots());
+        }
+    }
+
+    void LengthenRoot()
     {
         foreach (var rootSegment in rootSegmentsList)
         {
-            float newX = rootSegment.transform.position.x + rootGrowthStepX;
-            float newY = rootSegment.transform.position.y + rootGrowthStepY;
-            rootSegment.transform.position = new Vector3(newX, newY, rootSegment.transform.position.z);
+            MoveSegment(rootSegment, false);
+        }
+        foreach (var damagedRootSegment in damagedRootSegmentsList)
+        {
+            MoveSegment(damagedRootSegment, false);
         }
         AddRootSegment();
     }
 
-    void Retract()
+    void MoveSegment(GameObject rootSegment, bool isRetracting)
+    {
+        float stepX = rootGrowthStepX;
+        float stepY = rootGrowthStepY;
+
+        if (isRetracting)
+        {
+            stepX *= -1;
+            stepY *= -1;
+        }
+
+        float newX = rootSegment.transform.position.x + stepX;
+        float newY = rootSegment.transform.position.y + stepY;
+        rootSegment.transform.position = new Vector3(newX, newY, rootSegment.transform.position.z);
+    }
+
+    void TakeDamage()
+    {
+        if (!isBeingDamaged)
+        {
+            RetractRoot();
+
+            foreach (GameObject damagedRootSegment in damagedRootSegmentsList)
+            {
+                StartCoroutine(DamageVisual(damagedRootSegment, damageFlashDuration));
+            }
+        }
+    }
+
+    IEnumerator DamageVisual(GameObject damagedRootSegment, float duration)
+    {
+        Debug.Log("Taking Damage!");
+        isBeingDamaged = true;
+        SpriteRenderer rend = damagedRootSegment.GetComponent<SpriteRenderer>();
+        float alpha = 0.0f;
+
+        float timeElapsed = 0;
+        duration /= 2;
+        while (timeElapsed < duration)
+        {
+            alpha = Mathf.Lerp(alpha, 1.0f, timeElapsed / duration);
+            rend.color = new Color(rend.color.r, rend.color.g, rend.color.b, alpha);
+            timeElapsed += Time.deltaTime;
+            yield return null;
+        }
+        alpha = 1.0f;
+        rend.color = new Color(rend.color.r, rend.color.g, rend.color.b, alpha);
+
+        timeElapsed = 0;
+        while (timeElapsed < duration)
+        {
+            alpha = Mathf.Lerp(alpha, 0.0f, timeElapsed / duration);
+            rend.color = new Color(rend.color.r, rend.color.g, rend.color.b, alpha);
+            timeElapsed += Time.deltaTime;
+            yield return null;
+        }
+        alpha = 0.0f;
+        rend.color = new Color(rend.color.r, rend.color.g, rend.color.b, alpha);
+        isBeingDamaged = false;
+    }
+
+    void RetractRoot()
     {
         RemoveInnermostRootSegment();
         foreach (var rootSegment in rootSegmentsList)
         {
-            float newX = rootSegment.transform.position.x + (-1 * rootGrowthStepX);
-            float newY = rootSegment.transform.position.y + (-1 * rootGrowthStepY);
-            rootSegment.transform.position = new Vector3(newX, newY, rootSegment.transform.position.z);
+            MoveSegment(rootSegment, true);
         }
-        //growthTimer = 0.0f;
+        foreach (var damagedRootSegment in damagedRootSegmentsList)
+        {
+            MoveSegment(damagedRootSegment, true);
+        }
     }
 
     void AddRootSegment()
     {
         GameObject newRootSeg = Instantiate(rootSegmentPrefab, rootOrigin.transform);
-
         rootSegmentsList.Add(newRootSeg);
+        GameObject newDamagedRootSeg = Instantiate(damagedRootSegmentPrefab, rootOrigin.transform);
+        damagedRootSegmentsList.Add(newDamagedRootSeg);
 
         rootEndAnim.Play("RootEndIdle");
+        damagedRootEndAnim.Play("RootEndIdle");
     }
 
     void RemoveInnermostRootSegment()
     {
         Destroy(rootSegmentsList[rootSegmentsList.Count - 1]);
         rootSegmentsList.RemoveAt(rootSegmentsList.Count - 1);
+
+        Destroy(damagedRootSegmentsList[damagedRootSegmentsList.Count - 1]);
+        damagedRootSegmentsList.RemoveAt(damagedRootSegmentsList.Count - 1);
     }
 }
