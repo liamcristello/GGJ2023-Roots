@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 4d45b19fdfec7144d9295d19977820d1
+guid: f29d141c29a8f674cbbc33e6375ce971
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -48,7 +48,7 @@ TextureImporter:
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
-  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteBorder: {x: 114, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
@@ -117,13 +117,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: front_plant_idle_0
+      name: bomb_grow_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 400
-        height: 400
+        width: 125
+        height: 125
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -131,20 +131,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dc4c223d65db94e1ea93bc904e61f4e6
-      internalID: 869980829
+      spriteID: 26ba9ef2193d5f1498254f65adb681db
+      internalID: 1761073652
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: front_plant_idle_1
+      name: bomb_grow_1
       rect:
         serializedVersion: 2
-        x: 400
+        x: 125
         y: 0
-        width: 400
-        height: 400
+        width: 125
+        height: 125
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -152,20 +152,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a210063a776e54500b5ddf005d03a881
-      internalID: -1203802952
+      spriteID: 2b57b6edffe980c449bea6268f24c3c2
+      internalID: 161831769
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: front_plant_idle_2
+      name: bomb_grow_2
       rect:
         serializedVersion: 2
-        x: 800
+        x: 250
         y: 0
-        width: 400
-        height: 400
+        width: 125
+        height: 125
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -173,20 +173,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a4c175edd44aa4085b59e3b8e2fdf1ba
-      internalID: 1898731472
+      spriteID: 81c55104a51d52444b272238b25785d1
+      internalID: -1247023907
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: front_plant_idle_3
+      name: bomb_grow_3
       rect:
         serializedVersion: 2
-        x: 1200
+        x: 375
         y: 0
-        width: 400
-        height: 400
+        width: 125
+        height: 125
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -194,8 +194,134 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1eeb19e24a07b4f9d8f54831b14e8f04
-      internalID: -1323575997
+      spriteID: dd6a14d0c9aa967448e18cb5a412e9c8
+      internalID: -1286889109
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomb_grow_4
+      rect:
+        serializedVersion: 2
+        x: 500
+        y: 0
+        width: 125
+        height: 125
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 514a089524845094fa1f22011ca7ec49
+      internalID: -1503568007
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomb_grow_5
+      rect:
+        serializedVersion: 2
+        x: 625
+        y: 0
+        width: 125
+        height: 125
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a8a1df74ddd3fe843b48b368f7ce491e
+      internalID: -1063467361
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomb_grow_6
+      rect:
+        serializedVersion: 2
+        x: 750
+        y: 0
+        width: 125
+        height: 125
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0f4fce75b27446540bed762f78e16248
+      internalID: -214124380
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomb_grow_7
+      rect:
+        serializedVersion: 2
+        x: 875
+        y: 0
+        width: 125
+        height: 125
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9bc85ee86fc7355468877c0b1e6fcae5
+      internalID: -1896654244
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomb_grow_8
+      rect:
+        serializedVersion: 2
+        x: 1000
+        y: 0
+        width: 125
+        height: 125
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 48cfd7ca0c2e7a0419d8774632feb0a9
+      internalID: -7400878
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomb_grow_9
+      rect:
+        serializedVersion: 2
+        x: 1125
+        y: 0
+        width: 125
+        height: 125
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d38d1ba7a3dd1354b82603e3311fff93
+      internalID: -200721457
       vertices: []
       indices: 
       edges: []
@@ -204,17 +330,23 @@ TextureImporter:
     physicsShape: []
     bones: []
     spriteID: 5e97eb03825dee720800000000000000
-    internalID: 0
+    internalID: 1537655665
     vertices: []
     indices: 
     edges: []
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      front_plant_idle_3: -1323575997
-      front_plant_idle_0: 869980829
-      front_plant_idle_2: 1898731472
-      front_plant_idle_1: -1203802952
+      bomb_grow_8: -7400878
+      bomb_grow_9: -200721457
+      bomb_grow_6: -214124380
+      bomb_grow_4: -1503568007
+      bomb_grow_0: 1761073652
+      bomb_grow_7: -1896654244
+      bomb_grow_2: -1247023907
+      bomb_grow_3: -1286889109
+      bomb_grow_1: 161831769
+      bomb_grow_5: -1063467361
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

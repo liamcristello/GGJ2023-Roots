@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: f29d141c29a8f674cbbc33e6375ce971
+guid: 9d74c5aab0ab7224b80b2aea0db6dff7
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -48,7 +48,7 @@ TextureImporter:
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
-  spriteBorder: {x: 114, y: 0, z: 0, w: 0}
+  spriteBorder: {x: 0, y: 0, z: 1030, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
@@ -101,6 +101,18 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -110,8 +122,8 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 125
-        height: 125
+        width: 150
+        height: 150
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -119,8 +131,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 26ba9ef2193d5f1498254f65adb681db
-      internalID: 1761073652
+      spriteID: 39c1f4c7b4ef7604ca6dd59956fa2c33
+      internalID: -1188593467
       vertices: []
       indices: 
       edges: []
@@ -129,10 +141,10 @@ TextureImporter:
       name: bomb_grow_1
       rect:
         serializedVersion: 2
-        x: 125
+        x: 151
         y: 0
-        width: 125
-        height: 125
+        width: 149
+        height: 150
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -140,8 +152,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2b57b6edffe980c449bea6268f24c3c2
-      internalID: 161831769
+      spriteID: 11173ac0427dfc54ba3749cf9dc47a94
+      internalID: 1809903983
       vertices: []
       indices: 
       edges: []
@@ -150,10 +162,10 @@ TextureImporter:
       name: bomb_grow_2
       rect:
         serializedVersion: 2
-        x: 250
+        x: 301
         y: 0
-        width: 125
-        height: 125
+        width: 149
+        height: 150
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -161,8 +173,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 81c55104a51d52444b272238b25785d1
-      internalID: -1247023907
+      spriteID: 4a450540687ad68479ea7935dc19cdf7
+      internalID: 2016614228
       vertices: []
       indices: 
       edges: []
@@ -171,10 +183,10 @@ TextureImporter:
       name: bomb_grow_3
       rect:
         serializedVersion: 2
-        x: 375
+        x: 451
         y: 0
-        width: 125
-        height: 125
+        width: 149
+        height: 150
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -182,8 +194,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dd6a14d0c9aa967448e18cb5a412e9c8
-      internalID: -1286889109
+      spriteID: fc8d829ce0e7f24479afc1558ea8184d
+      internalID: 1777204558
       vertices: []
       indices: 
       edges: []
@@ -192,10 +204,10 @@ TextureImporter:
       name: bomb_grow_4
       rect:
         serializedVersion: 2
-        x: 500
+        x: 601
         y: 0
-        width: 125
-        height: 125
+        width: 149
+        height: 150
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -203,8 +215,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 514a089524845094fa1f22011ca7ec49
-      internalID: -1503568007
+      spriteID: fc6de317c794e2d4b9f017e293f13c01
+      internalID: -2072021647
       vertices: []
       indices: 
       edges: []
@@ -213,10 +225,10 @@ TextureImporter:
       name: bomb_grow_5
       rect:
         serializedVersion: 2
-        x: 625
+        x: 751
         y: 0
-        width: 125
-        height: 125
+        width: 149
+        height: 150
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -224,8 +236,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a8a1df74ddd3fe843b48b368f7ce491e
-      internalID: -1063467361
+      spriteID: 998aa42de97d44343a2207f6d53f5f06
+      internalID: -1171049647
       vertices: []
       indices: 
       edges: []
@@ -234,10 +246,10 @@ TextureImporter:
       name: bomb_grow_6
       rect:
         serializedVersion: 2
-        x: 750
+        x: 901
         y: 0
-        width: 125
-        height: 125
+        width: 149
+        height: 150
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -245,8 +257,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0f4fce75b27446540bed762f78e16248
-      internalID: -214124380
+      spriteID: d1c84190b671d26498c1d3342b5a2f8a
+      internalID: -1818799947
       vertices: []
       indices: 
       edges: []
@@ -255,10 +267,10 @@ TextureImporter:
       name: bomb_grow_7
       rect:
         serializedVersion: 2
-        x: 875
+        x: 1051
         y: 0
-        width: 125
-        height: 125
+        width: 149
+        height: 150
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -266,50 +278,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9bc85ee86fc7355468877c0b1e6fcae5
-      internalID: -1896654244
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: bomb_grow_8
-      rect:
-        serializedVersion: 2
-        x: 1000
-        y: 0
-        width: 125
-        height: 125
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 48cfd7ca0c2e7a0419d8774632feb0a9
-      internalID: -7400878
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: bomb_grow_9
-      rect:
-        serializedVersion: 2
-        x: 1125
-        y: 0
-        width: 125
-        height: 125
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d38d1ba7a3dd1354b82603e3311fff93
-      internalID: -200721457
+      spriteID: 46d40b1ba0945934eb9b2b5117808b80
+      internalID: -1527143255
       vertices: []
       indices: 
       edges: []
@@ -325,16 +295,14 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      bomb_grow_8: -7400878
-      bomb_grow_9: -200721457
-      bomb_grow_6: -214124380
-      bomb_grow_4: -1503568007
-      bomb_grow_0: 1761073652
-      bomb_grow_7: -1896654244
-      bomb_grow_2: -1247023907
-      bomb_grow_3: -1286889109
-      bomb_grow_1: 161831769
-      bomb_grow_5: -1063467361
+      bomb_grow_6: -1818799947
+      bomb_grow_4: -2072021647
+      bomb_grow_0: -1188593467
+      bomb_grow_7: -1527143255
+      bomb_grow_2: 2016614228
+      bomb_grow_3: 1777204558
+      bomb_grow_1: 1809903983
+      bomb_grow_5: -1171049647
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
