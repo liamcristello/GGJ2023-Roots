@@ -10,11 +10,13 @@ public class TitleScreen : MonoBehaviour
 
     [SerializeField] GameObject StartPrompt;
     [SerializeField] float blinkTimer = 1.0f;
+    [SerializeField] AudioSource titleMusic;
 
     // Start is called before the first frame update
     void Start()
     {
         blinkOn();
+        playMusic();
     }
 
     // Update is called once per frame
@@ -43,5 +45,11 @@ public class TitleScreen : MonoBehaviour
         int nextSceneIndex = SceneManager.GetActiveScene().buildIndex + 1;
         SceneManager.LoadScene(nextSceneIndex);
         Debug.Log("Loading gameplay");
+    }
+
+    void playMusic()
+    {
+        titleMusic.Play();
+        Invoke("playMusic", titleMusic.clip.length + 2);
     }
 }
