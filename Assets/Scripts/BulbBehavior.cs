@@ -307,5 +307,6 @@ public class BulbBehavior : MonoBehaviour
     void GameOver()
     {
         gameOver.SetActive(true);
+        gameOver.GetComponent<GameOver>().EndGame();
     }
 }
