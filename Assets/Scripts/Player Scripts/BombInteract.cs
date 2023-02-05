@@ -6,6 +6,8 @@ using UnityEngine;
 public class BombInteract : MonoBehaviour
 {
     [SerializeField] float throwDelay = 0.1f;
+    [SerializeField] AudioSource pickup;
+    [SerializeField] AudioSource throwing;
 
     public bool throwReady = false;
 
@@ -24,12 +26,16 @@ public class BombInteract : MonoBehaviour
         //carriedBombSprite.enabled = false;
         if (Input.GetMouseButtonDown(1) && throwReady)
         {
-            ThrowBomb(); //Disable this maybe?
+            //ThrowBomb(); //Disable this maybe?
         }
     }
 
     public void PickupBomb()
     {
+        if (!pickup.isPlaying)
+        {
+            pickup.Play();
+        }
         carriedBombSprite.enabled = true;
         Invoke("ReadyThrow", throwDelay);
         Debug.Log("Picked up a bomb!");
@@ -42,6 +48,10 @@ public class BombInteract : MonoBehaviour
 
     public void ThrowBomb()
     {
+        if (!throwing.isPlaying)
+        {
+            throwing.Play();
+        }
         carriedBombSprite.enabled = false;
         throwReady = false;
         Debug.Log("Threw a bomb!");

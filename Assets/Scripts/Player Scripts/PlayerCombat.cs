@@ -12,6 +12,7 @@ public class PlayerCombat : MonoBehaviour
     [SerializeField] GameObject swordSprite;
     [SerializeField] GameObject swordHB;
     [SerializeField] GameObject playerBomb;
+    [SerializeField] AudioSource swingSound;
 
     BombInteract playerBombInteract;
     BoxCollider2D swordCollider;
@@ -55,6 +56,11 @@ public class PlayerCombat : MonoBehaviour
         {
             swordCollider.enabled = false;
             //swordSwing.enabled = false;
+        }
+
+        if (!swingSound.isPlaying)
+        {
+            swingSound.Play();
         }
         //swordAnim.Play("Base Layer.swing", 0, 0.0f);
         //swordAnim.SetTrigger("Swing");
