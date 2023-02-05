@@ -24,7 +24,7 @@ public class BombInteract : MonoBehaviour
         //carriedBombSprite.enabled = false;
         if (Input.GetMouseButtonDown(1) && throwReady)
         {
-            ThrowBomb();
+            ThrowBomb(); //Disable this maybe?
         }
     }
 
