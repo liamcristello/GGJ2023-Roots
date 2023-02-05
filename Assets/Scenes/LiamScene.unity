@@ -481,7 +481,7 @@ MonoBehaviour:
   growTarget: {fileID: 1626526472}
   player: {fileID: 2094381681}
   playerBomb: {fileID: 2094381680}
-  bombRange: 4
+  bombRange: 2
   rootOrigin: {fileID: 582125809}
   rootEnd: {fileID: 1249373382}
   rootSegmentPrefab: {fileID: 4478055422361001652, guid: 53dbe9a413c7a4caaa7376bac517c9a0, type: 3}
@@ -1117,6 +1117,10 @@ PrefabInstance:
       propertyPath: playerBomb
       value: 
       objectReference: {fileID: 2094381680}
+    - target: {fileID: 6256994579610390358, guid: 3d26c2ecb1c53e54e9ddbd4b996f2c4c, type: 3}
+      propertyPath: pickupRange
+      value: 1.5
+      objectReference: {fileID: 0}
     - target: {fileID: 6256994579610390359, guid: 3d26c2ecb1c53e54e9ddbd4b996f2c4c, type: 3}
       propertyPath: m_Radius
       value: 1.7
@@ -1143,7 +1147,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6551879125823454233, guid: 3d26c2ecb1c53e54e9ddbd4b996f2c4c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 6.75
+      value: 8.1
       objectReference: {fileID: 0}
     - target: {fileID: 6551879125823454233, guid: 3d26c2ecb1c53e54e9ddbd4b996f2c4c, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1891,7 +1895,7 @@ MonoBehaviour:
   growTarget: {fileID: 1573158253}
   player: {fileID: 2094381681}
   playerBomb: {fileID: 2094381680}
-  bombRange: 4
+  bombRange: 2
   rootOrigin: {fileID: 1626200907}
   rootEnd: {fileID: 1942811587}
   rootSegmentPrefab: {fileID: 4478055422361001652, guid: 53dbe9a413c7a4caaa7376bac517c9a0, type: 3}
@@ -3034,6 +3038,10 @@ PrefabInstance:
       propertyPath: playerBomb
       value: 
       objectReference: {fileID: 2094381680}
+    - target: {fileID: 6256994579610390358, guid: 3d26c2ecb1c53e54e9ddbd4b996f2c4c, type: 3}
+      propertyPath: pickupRange
+      value: 1.5
+      objectReference: {fileID: 0}
     - target: {fileID: 6256994579610390359, guid: 3d26c2ecb1c53e54e9ddbd4b996f2c4c, type: 3}
       propertyPath: m_Radius
       value: 1.7
@@ -3056,11 +3064,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6551879125823454233, guid: 3d26c2ecb1c53e54e9ddbd4b996f2c4c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -7.91
+      value: -8.99
       objectReference: {fileID: 0}
     - target: {fileID: 6551879125823454233, guid: 3d26c2ecb1c53e54e9ddbd4b996f2c4c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -5.09
+      value: -5.71
       objectReference: {fileID: 0}
     - target: {fileID: 6551879125823454233, guid: 3d26c2ecb1c53e54e9ddbd4b996f2c4c, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3134,7 +3142,7 @@ MonoBehaviour:
   growTarget: {fileID: 2039059285}
   player: {fileID: 2094381681}
   playerBomb: {fileID: 2094381680}
-  bombRange: 4
+  bombRange: 2
   rootOrigin: {fileID: 208264546}
   rootEnd: {fileID: 727307681}
   rootSegmentPrefab: {fileID: 4478055422361001652, guid: 53dbe9a413c7a4caaa7376bac517c9a0, type: 3}
@@ -3869,6 +3877,10 @@ PrefabInstance:
       propertyPath: playerBomb
       value: 
       objectReference: {fileID: 2094381680}
+    - target: {fileID: 6256994579610390358, guid: 3d26c2ecb1c53e54e9ddbd4b996f2c4c, type: 3}
+      propertyPath: pickupRange
+      value: 1.5
+      objectReference: {fileID: 0}
     - target: {fileID: 6256994579610390359, guid: 3d26c2ecb1c53e54e9ddbd4b996f2c4c, type: 3}
       propertyPath: m_Radius
       value: 1.7
@@ -3891,11 +3903,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6551879125823454233, guid: 3d26c2ecb1c53e54e9ddbd4b996f2c4c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 7.85
+      value: 8.99
       objectReference: {fileID: 0}
     - target: {fileID: 6551879125823454233, guid: 3d26c2ecb1c53e54e9ddbd4b996f2c4c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4.64
+      value: -5.71
       objectReference: {fileID: 0}
     - target: {fileID: 6551879125823454233, guid: 3d26c2ecb1c53e54e9ddbd4b996f2c4c, type: 3}
       propertyPath: m_LocalPosition.z
