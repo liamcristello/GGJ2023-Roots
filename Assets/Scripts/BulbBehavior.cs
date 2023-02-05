@@ -10,6 +10,7 @@ public class BulbBehavior : MonoBehaviour
 
     public GameObject rootOrigin;
     public GameObject rootEnd;
+    public GameObject secondToLastRoot;
 
     public GameObject rootSegmentPrefab;
     public GameObject damagedRootSegmentPrefab;
@@ -28,9 +29,13 @@ public class BulbBehavior : MonoBehaviour
 
     public Slider plantSlider;
 
+    public GameObject gameOver;
+
     // Start is called before the first frame update
     void Start()
     {
+        gameOver.SetActive(false);
+
         SetGrowSpeed(timeToGrowSegment);
 
         StartCoroutine(GrowRoots());
@@ -181,6 +186,16 @@ public class BulbBehavior : MonoBehaviour
         {
             plantSlider.value = Mathf.Lerp(plantSlider.value, plantSlider.value + feedVal, Time.deltaTime);
             Debug.Log("PLANT IS " + (plantSlider.value * 100) + "% FULL");
+
+            if (plantSlider.value >= 1.0f)
+            {
+                GameOver();
+            }
         }
+    }
+
+    void GameOver()
+    {
+        gameOver.SetActive(true);
     }
 }

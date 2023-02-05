@@ -14,9 +14,14 @@ public class RootEndBehavior : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("GrowTarget"))
         {
-            atEnd = true;
-            StartCoroutine(FeedPlant());
+            StartCoroutine(StopGrowing());
         }
+    }
+
+    IEnumerator StopGrowing()
+    {
+        yield return new WaitForSecondsRealtime(bulbBehavior.timeToGrowSegment);
+        StartCoroutine(FeedPlant());
     }
 
     IEnumerator FeedPlant()
