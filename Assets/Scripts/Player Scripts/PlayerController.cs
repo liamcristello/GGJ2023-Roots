@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
     float vertical;
     [SerializeField] float moveLimiter = 0.7f;
     [SerializeField] float runSpeed = 300.0f;
+    [SerializeField] AudioSource walkSound;
 
     Animator playerAnimator;
     SpriteRenderer playerSprite;
@@ -39,7 +40,7 @@ public class PlayerController : MonoBehaviour
         {
             playerAnimator.SetTrigger("Idle");
         }
-
+        walkSoundPlay();
         CheckOrientation();
     }
 
@@ -67,6 +68,21 @@ public class PlayerController : MonoBehaviour
             {
                 playerSprite.flipX = false;
             }
+        }
+    }
+
+    void walkSoundPlay()
+    {
+        if (horizontal > 0.01 || horizontal < -0.01 || vertical > 0.01 || vertical < -0.01)
+        {
+            if (!walkSound.isPlaying)
+            {
+                walkSound.Play();
+            }
+        }
+        else
+        {
+            walkSound.Stop();
         }
     }
 }

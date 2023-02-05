@@ -58,7 +58,7 @@ public class BombFlowers : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(1))
         {
-            if (bombReady && inDist())
+            if (bombReady && inDist() && !playerBombInteract.throwReady)
             {
                 Debomb();
                 playerBombInteract.PickupBomb();
