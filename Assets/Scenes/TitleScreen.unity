@@ -527,7 +527,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   StartPrompt: {fileID: 1532560972}
-  blinkTimer: 1
+  blinkTimer: 0.6
 --- !u!1 &803104004
 GameObject:
   m_ObjectHideFlags: 0

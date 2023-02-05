@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 //author: Quang
 
@@ -19,7 +20,10 @@ public class TitleScreen : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetMouseButtonDown(0))
+        {
+            loadGame();
+        }
     }
 
     void blinkOff()
@@ -32,5 +36,12 @@ public class TitleScreen : MonoBehaviour
     {
         StartPrompt.SetActive(true);
         Invoke("blinkOff", blinkTimer);
+    }
+
+    void loadGame()
+    {
+        int nextSceneIndex = SceneManager.GetActiveScene().buildIndex + 1;
+        SceneManager.LoadScene(nextSceneIndex);
+        Debug.Log("Loading gameplay");
     }
 }
