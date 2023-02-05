@@ -8,6 +8,9 @@ public class BulbBehavior : MonoBehaviour
     public float timeToGrowSegment;
     public GameObject growTarget;
 
+    public GameObject player;
+    public GameObject playerBomb;
+    public float bombRange;
 
     public GameObject rootOrigin;
     public GameObject rootEnd;
@@ -46,27 +49,19 @@ public class BulbBehavior : MonoBehaviour
         SetGrowSpeed(timeToGrowSegment);
 
         stunned = false;
-        //AddRootSegment();
-        //RemoveInnermostRootSegment();
+
         StartCoroutine(GrowRoots());
+
+        player = GameObject.FindGameObjectWithTag("Player");
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        //if (Input.GetMouseButtonDown(0))
-        //{
-        //    TakeDamage();
-        //}
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Sword") && !stunned)
-        {
-            StartCoroutine(Stun());
-        }
-    }
+    //private void OnCollisionEnter2D(Collision2D collision)
+    //{
+    //    if (collision.gameObject.CompareTag("Sword") && !stunned)
+    //    {
+    //        StartCoroutine(Stun());
+    //    }
+    //}
 
     void SetGrowSpeed(float timeToGrowSegment)
     {
@@ -137,7 +132,15 @@ public class BulbBehavior : MonoBehaviour
         }
     }
 
-    public IEnumerator Stun()
+    private void OnMouseOver()
+    {
+        if (Vector3.Distance(player.transform.position, transform.position) < bombRange)
+        {
+            Debug.Log("Bomb!");
+        }
+    }
+
+        public IEnumerator Stun()
     {
         stunned = true;
         TakeDamage();
