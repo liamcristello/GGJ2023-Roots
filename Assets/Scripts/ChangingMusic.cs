@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ChangingMusic : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class ChangingMusic : MonoBehaviour
         GetComponent<AudioSource>().loop = true;
         StartCoroutine(playSound());
     }
+
 
     IEnumerator playSound()
     {
