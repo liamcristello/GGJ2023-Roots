@@ -8,7 +8,7 @@ public class SwordBehavior : MonoBehaviour
 {
     [SerializeField] GameObject player;
     [SerializeField] GameObject swordWhole;
-
+    
     Transform swordTransform;
     BoxCollider2D swordHB;
 
@@ -35,7 +35,7 @@ public class SwordBehavior : MonoBehaviour
     private void OnCollisionStay2D(Collision2D collision)
     {
         swordHB.enabled = false;
-        if (collision.gameObject.CompareTag("Root"))
+        if (collision.gameObject.CompareTag("Enemy"))
         {
             Debug.Log("SLAIN AN ENEMY");
         }
