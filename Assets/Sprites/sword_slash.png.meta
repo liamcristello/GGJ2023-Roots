@@ -110,8 +110,8 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 200
-        height: 150
+        width: 400
+        height: 300
       alignment: 9
       pivot: {x: 0.059194006, y: 0.49160343}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -129,10 +129,10 @@ TextureImporter:
       name: sword_slash_1
       rect:
         serializedVersion: 2
-        x: 201
+        x: 400
         y: 0
-        width: 199
-        height: 150
+        width: 400
+        height: 300
       alignment: 9
       pivot: {x: 0.06963674, y: 0.51679236}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -150,10 +150,10 @@ TextureImporter:
       name: sword_slash_2
       rect:
         serializedVersion: 2
-        x: 401
+        x: 800
         y: 0
-        width: 199
-        height: 150
+        width: 400
+        height: 300
       alignment: 9
       pivot: {x: 0.05065013, y: 0.51679236}
       border: {x: 0, y: 0, z: 0, w: 0}
