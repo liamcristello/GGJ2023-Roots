@@ -20,16 +20,6 @@ public class BombInteract : MonoBehaviour
         carriedBombSprite.enabled = false;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        //carriedBombSprite.enabled = false;
-        if (Input.GetMouseButtonDown(1) && throwReady)
-        {
-            //ThrowBomb(); //Disable this maybe?
-        }
-    }
-
     public void PickupBomb()
     {
         if (!pickup.isPlaying)

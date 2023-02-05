@@ -36,6 +36,9 @@ public class BulbBehavior : MonoBehaviour
     public float damageFlashDuration;
     public float stunDuration;
     private bool stunned;
+    public Animator bulbAnim;
+    public float rootDiscolorSpeed;
+    public Color stunRootColor;
 
     public Slider plantSlider;
 
@@ -51,8 +54,6 @@ public class BulbBehavior : MonoBehaviour
         stunned = false;
 
         StartCoroutine(GrowRoots());
-
-        player = GameObject.FindGameObjectWithTag("Player");
     }
 
     //private void OnCollisionEnter2D(Collision2D collision)
@@ -134,33 +135,64 @@ public class BulbBehavior : MonoBehaviour
 
     private void OnMouseOver()
     {
-        if (Vector3.Distance(player.transform.position, transform.position) < bombRange)
+        if (Vector3.Distance(player.transform.position, transform.position) < bombRange
+            && playerBomb.GetComponent<BombInteract>().throwReady
+            && Input.GetMouseButtonDown(1)
+            && !stunned)
         {
-            Debug.Log("Bomb!");
+            playerBomb.GetComponent<BombInteract>().ThrowBomb();
+            StartCoroutine(Stun());
         }
     }
 
-        public IEnumerator Stun()
+    public IEnumerator Stun()
     {
         stunned = true;
+        gameObject.GetComponent<Collider2D>().enabled = false;
+        bulbAnim.Play("BulbBite");
+        yield return new WaitForSecondsRealtime(1.0f);
         TakeDamage();
         SetGrowSpeed(0.0f);
         StopCoroutine(GrowRoots());
+        StartCoroutine(ColorRoots(true, rootDiscolorSpeed));
 
         yield return new WaitForSecondsRealtime(stunDuration);
         SetGrowSpeed(timeToGrowSegment);
-        if (rootEndAnim)
-        {
-            rootEndAnim.Play("RootEndIdle");
-            damagedRootEndAnim.Play("RootEndIdle");
-        }
+        rootEndAnim.Play("RootEndIdle");
+        damagedRootEndAnim.Play("RootEndIdle");
         if (rootBeforeEndAnim)
         {
             rootBeforeEndAnim.Play("RootEndIdle");
             damagedRootBeforeEndAnim.Play("RootEndIdle");
         }
         stunned = false;
+        gameObject.GetComponent<Collider2D>().enabled = true;
+        StartCoroutine(ColorRoots(false, rootDiscolorSpeed));
+        bulbAnim.Play("BulbReturnFromStun");
         StartCoroutine(GrowRoots());
+    }
+
+    IEnumerator ColorRoots(bool beingStunned, float duration)
+    {
+        float timeElapsed = 0;
+
+        while (timeElapsed < duration)
+        {
+            foreach (GameObject rootSegment in rootSegmentsList)
+            {
+                Color rootColor = rootSegment.GetComponent<SpriteRenderer>().color;
+                if (beingStunned)
+                {
+                    rootSegment.GetComponent<SpriteRenderer>().color = Color.Lerp(rootColor, stunRootColor, timeElapsed / duration);
+                }
+                else
+                {
+                    rootSegment.GetComponent<SpriteRenderer>().color = Color.Lerp(rootColor, Color.white, timeElapsed / duration);
+                }
+            }
+            timeElapsed += Time.deltaTime;
+            yield return null;
+        }
     }
 
     IEnumerator DamageVisual(GameObject damagedRootSegment, float duration)
