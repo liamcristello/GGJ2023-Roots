@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//author: Quang
+
 public class BackgroundMusic : MonoBehaviour
 {
 
@@ -13,11 +15,5 @@ public class BackgroundMusic : MonoBehaviour
     {
         IntroBG.Play();
         LoopBG.PlayDelayed(IntroBG.clip.length);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
