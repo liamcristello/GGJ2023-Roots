@@ -36,6 +36,7 @@ public class BulbBehavior : MonoBehaviour
     public float damageFlashDuration;
     public float stunDuration;
     private bool stunned;
+    public Animator bulbAnim;
 
     public Slider plantSlider;
 
@@ -51,8 +52,6 @@ public class BulbBehavior : MonoBehaviour
         stunned = false;
 
         StartCoroutine(GrowRoots());
-
-        player = GameObject.FindGameObjectWithTag("Player");
     }
 
     //private void OnCollisionEnter2D(Collision2D collision)
@@ -134,32 +133,34 @@ public class BulbBehavior : MonoBehaviour
 
     private void OnMouseOver()
     {
-        if (Vector3.Distance(player.transform.position, transform.position) < bombRange)
+        if (Vector3.Distance(player.transform.position, transform.position) < bombRange
+            //&& playerBomb.GetComponent<BombInteract>().throwReady
+            && Input.GetMouseButtonDown(1))
         {
-            Debug.Log("Bomb!");
+            StartCoroutine(Stun());
         }
     }
 
-        public IEnumerator Stun()
+    public IEnumerator Stun()
     {
         stunned = true;
+        bulbAnim.Play("BulbBite");
+        yield return new WaitForSecondsRealtime(1.0f);
         TakeDamage();
         SetGrowSpeed(0.0f);
         StopCoroutine(GrowRoots());
 
         yield return new WaitForSecondsRealtime(stunDuration);
         SetGrowSpeed(timeToGrowSegment);
-        if (rootEndAnim)
-        {
-            rootEndAnim.Play("RootEndIdle");
-            damagedRootEndAnim.Play("RootEndIdle");
-        }
+        rootEndAnim.Play("RootEndIdle");
+        damagedRootEndAnim.Play("RootEndIdle");
         if (rootBeforeEndAnim)
         {
             rootBeforeEndAnim.Play("RootEndIdle");
             damagedRootBeforeEndAnim.Play("RootEndIdle");
         }
         stunned = false;
+        bulbAnim.Play("BulbReturnFromStun");
         StartCoroutine(GrowRoots());
     }
 
