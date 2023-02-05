@@ -14,6 +14,8 @@ public class BulbBehavior : MonoBehaviour
 
     public GameObject rootSegmentPrefab;
     public GameObject damagedRootSegmentPrefab;
+    public GameObject rootBeforeEndPrefab;
+    public GameObject damagedRootBeforeEndPrefab;
 
     public List<GameObject> rootSegmentsList;
     public List<GameObject> damagedRootSegmentsList;
@@ -23,6 +25,8 @@ public class BulbBehavior : MonoBehaviour
 
     public Animator rootEndAnim;
     public Animator damagedRootEndAnim;
+    public Animator rootBeforeEndAnim;
+    public Animator damagedRootBeforeEndAnim;
 
     private bool isBeingDamaged;
     public float damageFlashDuration;
@@ -38,24 +42,30 @@ public class BulbBehavior : MonoBehaviour
 
         SetGrowSpeed(timeToGrowSegment);
 
-        AddRootSegment();
-        RemoveInnermostRootSegment();
+        //AddRootSegment();
+        //RemoveInnermostRootSegment();
         StartCoroutine(GrowRoots());
     }
 
     // Update is called once per frame
     void Update()
     {
-        //if (Input.GetMouseButtonDown(0))
-        //{
-        //    TakeDamage();
-        //}
+        if (Input.GetMouseButtonDown(0))
+        {
+            TakeDamage();
+        }
     }
 
     void SetGrowSpeed(float timeToGrowSegment)
     {
         rootEndAnim.speed = 1 / timeToGrowSegment;
         damagedRootEndAnim.speed = 1 / timeToGrowSegment;
+
+        if (rootBeforeEndAnim && damagedRootBeforeEndAnim)
+        {
+            rootBeforeEndAnim.speed = 1 / timeToGrowSegment;
+            damagedRootBeforeEndAnim.speed = 1 / timeToGrowSegment;
+        }
     }
 
     public IEnumerator GrowRoots()
@@ -101,7 +111,7 @@ public class BulbBehavior : MonoBehaviour
 
     public void TakeDamage()
     {
-        if (!isBeingDamaged && rootSegmentsList.Count > 2)
+        if (!isBeingDamaged && rootSegmentsList.Count > 1)
         {
             RetractRoot();
 
@@ -160,13 +170,28 @@ public class BulbBehavior : MonoBehaviour
 
     void AddRootSegment()
     {
-        GameObject newRootSeg = Instantiate(rootSegmentPrefab, rootOrigin.transform);
-        rootSegmentsList.Add(newRootSeg);
-        GameObject newDamagedRootSeg = Instantiate(damagedRootSegmentPrefab, rootOrigin.transform);
-        damagedRootSegmentsList.Add(newDamagedRootSeg);
+        if (rootSegmentsList.Count > 1)
+        {
+            GameObject newRootSeg = Instantiate(rootSegmentPrefab, rootOrigin.transform);
+            rootSegmentsList.Add(newRootSeg);
+            GameObject newDamagedRootSeg = Instantiate(damagedRootSegmentPrefab, rootOrigin.transform);
+            damagedRootSegmentsList.Add(newDamagedRootSeg);
+        }
+        else
+        {
+            GameObject newRootBeforeEndSeg = Instantiate(rootBeforeEndPrefab, rootOrigin.transform);
+            rootSegmentsList.Add(newRootBeforeEndSeg);
+            rootBeforeEndAnim = newRootBeforeEndSeg.GetComponent<Animator>();
+            GameObject newDamagedRootBeforeEndSeg = Instantiate(damagedRootBeforeEndPrefab, rootOrigin.transform);
+            damagedRootSegmentsList.Add(newDamagedRootBeforeEndSeg);
+            damagedRootBeforeEndAnim = newDamagedRootBeforeEndSeg.GetComponent<Animator>();
+            SetGrowSpeed(timeToGrowSegment);
+        }
 
         rootEndAnim.Play("RootEndIdle");
         damagedRootEndAnim.Play("RootEndIdle");
+        rootBeforeEndAnim.Play("RootEndIdle");
+        damagedRootBeforeEndAnim.Play("RootEndIdle");
     }
 
     void RemoveInnermostRootSegment()
@@ -183,7 +208,6 @@ public class BulbBehavior : MonoBehaviour
         if (plantSlider.value < 1.0f)
         {
             plantSlider.value = Mathf.Lerp(plantSlider.value, plantSlider.value + feedVal, Time.deltaTime);
-            Debug.Log("PLANT IS " + (plantSlider.value * 100) + "% FULL");
 
             if (plantSlider.value >= 1.0f)
             {
