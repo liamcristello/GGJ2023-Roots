@@ -8,6 +8,10 @@ public class BulbBehavior : MonoBehaviour
     public float timeToGrowSegment;
     public GameObject growTarget;
 
+    public GameObject player;
+    public GameObject playerBomb;
+    public float bombRange;
+
     public GameObject rootOrigin;
     public GameObject rootEnd;
     //public GameObject secondToLastRoot;
@@ -25,11 +29,13 @@ public class BulbBehavior : MonoBehaviour
 
     public Animator rootEndAnim;
     public Animator damagedRootEndAnim;
-    public Animator rootBeforeEndAnim;
-    public Animator damagedRootBeforeEndAnim;
+    private Animator rootBeforeEndAnim;
+    private Animator damagedRootBeforeEndAnim;
 
     private bool isBeingDamaged;
     public float damageFlashDuration;
+    public float stunDuration;
+    private bool stunned;
 
     public Slider plantSlider;
 
@@ -42,28 +48,32 @@ public class BulbBehavior : MonoBehaviour
 
         SetGrowSpeed(timeToGrowSegment);
 
-        //AddRootSegment();
-        //RemoveInnermostRootSegment();
+        stunned = false;
+
         StartCoroutine(GrowRoots());
+
+        player = GameObject.FindGameObjectWithTag("Player");
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        //if (Input.GetMouseButtonDown(0))
-        //{
-        //    TakeDamage();
-        //}
-    }
+    //private void OnCollisionEnter2D(Collision2D collision)
+    //{
+    //    if (collision.gameObject.CompareTag("Sword") && !stunned)
+    //    {
+    //        StartCoroutine(Stun());
+    //    }
+    //}
 
     void SetGrowSpeed(float timeToGrowSegment)
     {
         rootEndAnim.speed = 1 / timeToGrowSegment;
         damagedRootEndAnim.speed = 1 / timeToGrowSegment;
 
-        if (rootBeforeEndAnim && damagedRootBeforeEndAnim)
+        if (rootBeforeEndAnim)
         {
             rootBeforeEndAnim.speed = 1 / timeToGrowSegment;
+        }
+        if (damagedRootBeforeEndAnim)
+        {
             damagedRootBeforeEndAnim.speed = 1 / timeToGrowSegment;
         }
     }
@@ -72,7 +82,7 @@ public class BulbBehavior : MonoBehaviour
     {
         yield return new WaitForSecondsRealtime(timeToGrowSegment);
 
-        if (!rootEnd.GetComponent<RootEndBehavior>().atEnd)
+        if (!stunned && !rootEnd.GetComponent<RootEndBehavior>().atEnd)
         {
             LengthenRoot();
             StartCoroutine(GrowRoots());
@@ -120,6 +130,37 @@ public class BulbBehavior : MonoBehaviour
                 StartCoroutine(DamageVisual(damagedRootSegment, damageFlashDuration));
             }
         }
+    }
+
+    private void OnMouseOver()
+    {
+        if (Vector3.Distance(player.transform.position, transform.position) < bombRange)
+        {
+            Debug.Log("Bomb!");
+        }
+    }
+
+        public IEnumerator Stun()
+    {
+        stunned = true;
+        TakeDamage();
+        SetGrowSpeed(0.0f);
+        StopCoroutine(GrowRoots());
+
+        yield return new WaitForSecondsRealtime(stunDuration);
+        SetGrowSpeed(timeToGrowSegment);
+        if (rootEndAnim)
+        {
+            rootEndAnim.Play("RootEndIdle");
+            damagedRootEndAnim.Play("RootEndIdle");
+        }
+        if (rootBeforeEndAnim)
+        {
+            rootBeforeEndAnim.Play("RootEndIdle");
+            damagedRootBeforeEndAnim.Play("RootEndIdle");
+        }
+        stunned = false;
+        StartCoroutine(GrowRoots());
     }
 
     IEnumerator DamageVisual(GameObject damagedRootSegment, float duration)
