@@ -44,6 +44,11 @@ public class BulbBehavior : MonoBehaviour
 
     public GameObject gameOver;
 
+    public AudioSource source;
+    public AudioClip biteClip;
+    public AudioClip explodeClip;
+    public AudioClip rootRetractClip;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -55,14 +60,6 @@ public class BulbBehavior : MonoBehaviour
 
         StartCoroutine(GrowRoots());
     }
-
-    //private void OnCollisionEnter2D(Collision2D collision)
-    //{
-    //    if (collision.gameObject.CompareTag("Sword") && !stunned)
-    //    {
-    //        StartCoroutine(Stun());
-    //    }
-    //}
 
     void SetGrowSpeed(float timeToGrowSegment)
     {
@@ -143,6 +140,24 @@ public class BulbBehavior : MonoBehaviour
             playerBomb.GetComponent<BombInteract>().ThrowBomb();
             StartCoroutine(Stun());
         }
+    }
+
+    public void PlayBiteSound()
+    {
+        source.clip = biteClip;
+        source.PlayOneShot(biteClip);
+    }
+
+    public void PlayExplodeSound()
+    {
+        source.clip = explodeClip;
+        source.PlayOneShot(explodeClip);
+    }
+
+    public void PlayRetractClip()
+    {
+        source.clip = rootRetractClip;
+        source.PlayOneShot(rootRetractClip);
     }
 
     public IEnumerator Stun()
@@ -229,6 +244,7 @@ public class BulbBehavior : MonoBehaviour
 
     void RetractRoot()
     {
+        PlayRetractClip();
         RemoveInnermostRootSegment();
         foreach (var rootSegment in rootSegmentsList)
         {
