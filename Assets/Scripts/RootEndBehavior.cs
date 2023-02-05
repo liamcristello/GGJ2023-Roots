@@ -18,6 +18,14 @@ public class RootEndBehavior : MonoBehaviour
         }
     }
 
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Sword"))
+        {
+            bulbBehavior.TakeDamage();
+        }
+    }
+
     IEnumerator StopGrowing()
     {
         yield return new WaitForSecondsRealtime(bulbBehavior.timeToGrowSegment);

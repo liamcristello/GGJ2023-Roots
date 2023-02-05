@@ -38,16 +38,18 @@ public class BulbBehavior : MonoBehaviour
 
         SetGrowSpeed(timeToGrowSegment);
 
+        AddRootSegment();
+        RemoveInnermostRootSegment();
         StartCoroutine(GrowRoots());
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0) && rootSegmentsList.Count > 1)
-        {
-            TakeDamage();
-        }
+        //if (Input.GetMouseButtonDown(0))
+        //{
+        //    TakeDamage();
+        //}
     }
 
     void SetGrowSpeed(float timeToGrowSegment)
@@ -97,14 +99,15 @@ public class BulbBehavior : MonoBehaviour
         rootSegment.transform.position = new Vector3(newX, newY, rootSegment.transform.position.z);
     }
 
-    void TakeDamage()
+    public void TakeDamage()
     {
-        if (!isBeingDamaged)
+        if (!isBeingDamaged && rootSegmentsList.Count > 2)
         {
             RetractRoot();
 
             foreach (GameObject damagedRootSegment in damagedRootSegmentsList)
             {
+                Debug.Log("Damaging " + damagedRootSegment.name);
                 StartCoroutine(DamageVisual(damagedRootSegment, damageFlashDuration));
             }
         }
