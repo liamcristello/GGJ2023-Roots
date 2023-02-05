@@ -110,12 +110,6 @@ public class BulbBehavior : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Play the flashing white animation
-    /// </summary>
-    /// <param name="damagedRootSegment">The damaged root segment object</param>
-    /// <param name="duration">How long the WHOLE ANIMATION should take</param>
-    /// <returns></returns>
     IEnumerator DamageVisual(GameObject damagedRootSegment, float duration)
     {
         isBeingDamaged = true;
@@ -134,6 +128,7 @@ public class BulbBehavior : MonoBehaviour
         alpha = 1.0f;
         rend.color = new Color(rend.color.r, rend.color.g, rend.color.b, alpha);
 
+        // Same thing in reverse
         timeElapsed = 0;
         while (timeElapsed < duration)
         {
