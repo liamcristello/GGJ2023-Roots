@@ -16,4 +16,10 @@ public class BackgroundMusic : MonoBehaviour
         IntroBG.Play();
         LoopBG.PlayDelayed(IntroBG.clip.length);
     }
+
+    public void StopAllSounds()
+    {
+        IntroBG.Stop();
+        LoopBG.Stop();
+    }
 }
