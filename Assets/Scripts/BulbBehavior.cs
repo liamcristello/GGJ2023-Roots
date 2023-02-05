@@ -50,10 +50,10 @@ public class BulbBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            TakeDamage();
-        }
+        //if (Input.GetMouseButtonDown(0))
+        //{
+        //    TakeDamage();
+        //}
     }
 
     void SetGrowSpeed(float timeToGrowSegment)
@@ -81,7 +81,6 @@ public class BulbBehavior : MonoBehaviour
 
     void LengthenRoot()
     {
-        Debug.Log("Lengthening");
         foreach (var rootSegment in rootSegmentsList)
         {
             MoveSegment(rootSegment, false);

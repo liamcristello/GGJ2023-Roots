@@ -14,16 +14,24 @@ public class RootEndBehavior : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("GrowTarget"))
         {
-            Debug.Log("Reached end at " + gameObject.name);
             StartCoroutine(StopGrowing());
         }
     }
 
-    private void OnCollisionStay2D(Collision2D collision)
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("GrowTarget"))
+        {
+            atEnd = false;
+            Debug.Log(gameObject.name + " can start growing again");
+            StartCoroutine(bulbBehavior.GrowRoots());
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Sword"))
         {
-            Debug.Log("Sword appears at " + gameObject.name);
             bulbBehavior.TakeDamage();
         }
     }
@@ -42,16 +50,6 @@ public class RootEndBehavior : MonoBehaviour
         if (atEnd)
         {
             StartCoroutine(FeedPlant());
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.gameObject.CompareTag("GrowTarget"))
-        {
-            atEnd = false;
-            Debug.Log(gameObject.name + " can start growing again");
-            StartCoroutine(bulbBehavior.GrowRoots());
         }
     }
 }
