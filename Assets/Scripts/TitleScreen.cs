@@ -11,18 +11,27 @@ public class TitleScreen : MonoBehaviour
     [SerializeField] GameObject StartPrompt;
     [SerializeField] float blinkTimer = 1.0f;
     [SerializeField] AudioSource titleMusic;
+    [SerializeField] GameObject tutorial;
+
+    bool tutorialShown = false;
 
     // Start is called before the first frame update
     void Start()
     {
         blinkOn();
         playMusic();
+        tutorial.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && !tutorialShown)
+        {
+            tutorial.SetActive(true);
+            tutorialShown = true;
+        }
+        else if (Input.GetMouseButtonDown(0))
         {
             loadGame();
         }
