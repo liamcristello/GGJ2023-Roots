@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 5151221639593245247}
   m_Layer: 0
   m_Name: RootEnd
-  m_TagString: Untagged
+  m_TagString: Root
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -122,6 +122,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   atEnd: 0
+  bulbBehavior: {fileID: 0}
+  feedValue: 0
 --- !u!95 &7680521492459342336
 Animator:
   serializedVersion: 5
