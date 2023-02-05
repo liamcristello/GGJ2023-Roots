@@ -14,6 +14,7 @@ public class RootEndBehavior : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("GrowTarget"))
         {
+            Debug.Log("Reached end at " + gameObject.name);
             StartCoroutine(StopGrowing());
         }
     }
@@ -22,12 +23,14 @@ public class RootEndBehavior : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Sword"))
         {
+            Debug.Log("Sword appears at " + gameObject.name);
             bulbBehavior.TakeDamage();
         }
     }
 
     IEnumerator StopGrowing()
     {
+        atEnd = true;
         yield return new WaitForSecondsRealtime(bulbBehavior.timeToGrowSegment);
         StartCoroutine(FeedPlant());
     }
@@ -47,6 +50,7 @@ public class RootEndBehavior : MonoBehaviour
         if (collision.gameObject.CompareTag("GrowTarget"))
         {
             atEnd = false;
+            Debug.Log(gameObject.name + " can start growing again");
             StartCoroutine(bulbBehavior.GrowRoots());
         }
     }

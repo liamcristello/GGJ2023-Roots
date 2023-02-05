@@ -10,7 +10,7 @@ public class BulbBehavior : MonoBehaviour
 
     public GameObject rootOrigin;
     public GameObject rootEnd;
-    public GameObject secondToLastRoot;
+    //public GameObject secondToLastRoot;
 
     public GameObject rootSegmentPrefab;
     public GameObject damagedRootSegmentPrefab;
