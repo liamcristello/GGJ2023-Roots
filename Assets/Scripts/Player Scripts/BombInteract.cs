@@ -40,7 +40,7 @@ public class BombInteract : MonoBehaviour
         throwReady = true;
     }
 
-    void ThrowBomb()
+    public void ThrowBomb()
     {
         carriedBombSprite.enabled = false;
         throwReady = false;

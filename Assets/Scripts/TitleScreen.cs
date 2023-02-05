@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//author: Quang
+
 public class TitleScreen : MonoBehaviour
 {
     // Start is called before the first frame update
