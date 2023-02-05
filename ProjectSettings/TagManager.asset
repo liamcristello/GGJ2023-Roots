@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Enemy
   - GrowTarget
+  - Root
   layers:
   - Default
   - TransparentFX

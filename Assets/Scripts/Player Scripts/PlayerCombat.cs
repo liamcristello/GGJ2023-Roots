@@ -11,7 +11,9 @@ public class PlayerCombat : MonoBehaviour
 
     [SerializeField] GameObject swordSprite;
     [SerializeField] GameObject swordHB;
+    [SerializeField] GameObject playerBomb;
 
+    BombInteract playerBombInteract;
     BoxCollider2D swordCollider;
     SpriteRenderer swordSwing;
     Animator swordAnim;
@@ -21,6 +23,7 @@ public class PlayerCombat : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        playerBombInteract = playerBomb.GetComponent<BombInteract>();
         swordSwing = swordSprite.GetComponent<SpriteRenderer>();
         swordAnim = swordSprite.GetComponent<Animator>();
         swordCollider = swordHB.GetComponent<BoxCollider2D>();
@@ -29,13 +32,19 @@ public class PlayerCombat : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(atkTimer <= 0)
+        if(atkTimer <= 0 && !playerBombInteract.throwReady)
         {
             PlayerAttak();
             //swingFlag = false;
             //swordAnim.
         }
         atkTimer -= Time.deltaTime;
+
+        swordSwing.enabled = true;
+        if (playerBombInteract.throwReady)
+        {
+            swordSwing.enabled = false;
+        }
     }
 
     void SwingAnimation()

@@ -7,6 +7,7 @@ public class BombFlowers : MonoBehaviour
 {
     SpriteRenderer flowerSprite;
     CircleCollider2D flowerCollider;
+    Animator flowerAnimator;
 
     float growthTimer = 0.0f;
     bool bombReady = false;
@@ -15,6 +16,7 @@ public class BombFlowers : MonoBehaviour
     [SerializeField] float pickupRange = 10.0f;
     [SerializeField] GameObject player; //This should be the player gameobject with the actual sprite attached to it
     [SerializeField] GameObject playerBomb;
+    [SerializeField] GameObject bombFlower;
     BombInteract playerBombInteract;
 
     // Start is called before the first frame update
@@ -22,6 +24,7 @@ public class BombFlowers : MonoBehaviour
     {
         flowerSprite = GetComponent<SpriteRenderer>();
         playerBombInteract = playerBomb.GetComponent<BombInteract>();
+        flowerAnimator = bombFlower.GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -46,6 +49,7 @@ public class BombFlowers : MonoBehaviour
     void Debomb()
     {
         bombReady = false;
+        flowerAnimator.SetTrigger("Replant");
         growthTimer = 0.0f;
         flowerSprite.color = Color.red;
     }
