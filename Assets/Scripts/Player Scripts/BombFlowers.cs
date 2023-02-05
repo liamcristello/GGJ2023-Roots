@@ -43,7 +43,7 @@ public class BombFlowers : MonoBehaviour
     void SproutBomb()
     {
         bombReady = true;
-        flowerSprite.color = Color.green;
+        //flowerSprite.color = Color.green;
     }
 
     void Debomb()
@@ -51,7 +51,7 @@ public class BombFlowers : MonoBehaviour
         bombReady = false;
         flowerAnimator.SetTrigger("Replant");
         growthTimer = 0.0f;
-        flowerSprite.color = Color.red;
+        //flowerSprite.color = Color.red;
     }
 
     private void OnMouseOver()

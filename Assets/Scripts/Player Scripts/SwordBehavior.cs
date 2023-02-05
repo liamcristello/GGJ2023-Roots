@@ -23,13 +23,7 @@ public class SwordBehavior : MonoBehaviour
 
     private void Update()
     {
-        Vector2 positionOnScreen = Camera.main.WorldToViewportPoint(player.transform.position);
-        Vector2 mouseOnScreen = (Vector2)Camera.main.ScreenToViewportPoint(Input.mousePosition);
-        swordAngle = AngleBetweenTwoPoints(positionOnScreen, mouseOnScreen);
-        //Debug.Log(swordAngle);
-
-        //swordAngle = Vector2.SignedAngle(Input.mousePosition - player.transform.position, Vector2.right);
-        swordTransform.eulerAngles = new Vector3(0, 0, swordAngle + 180);
+        rotateSword();
     }
 
     private void OnCollisionStay2D(Collision2D collision)
@@ -44,5 +38,17 @@ public class SwordBehavior : MonoBehaviour
     float AngleBetweenTwoPoints(Vector3 a, Vector3 b)
     {
         return Mathf.Atan2(a.y - b.y, a.x - b.x) * Mathf.Rad2Deg;
+    }
+
+    void rotateSword()
+    {
+        Vector2 positionOnScreen = Camera.main.WorldToViewportPoint(player.transform.position);
+        Vector2 mouseOnScreen = (Vector2)Camera.main.ScreenToViewportPoint(Input.mousePosition);
+        swordAngle = AngleBetweenTwoPoints(positionOnScreen, mouseOnScreen);
+        //Debug.Log(swordAngle);
+
+        //swordAngle = Vector2.SignedAngle(Input.mousePosition - player.transform.position, Vector2.right);
+        swordTransform.eulerAngles = new Vector3(0, 0, (swordAngle - 180));
+        //swordTransform.LookAt(Input.mousePosition);
     }
 }
