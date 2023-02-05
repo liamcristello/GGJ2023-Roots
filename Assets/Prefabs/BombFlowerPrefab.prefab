@@ -133,9 +133,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   readyTimer: 10
   pickupRange: 3
-  player: {fileID: 8712610455406251052, guid: 3412ed420ab2ee7499dec899180c2386, type: 3}
-  playerBomb: {fileID: 1266431149187870093, guid: 11fb887faa281004b89597e2c58f6264, type: 3}
-  bombFlower: {fileID: 2791852211431350390, guid: 7c1862cb3946d6247b63c8981e13685e, type: 3}
+  player: {fileID: 0}
+  playerBomb: {fileID: 0}
+  bombFlower: {fileID: 3030679467016450539}
 --- !u!58 &6256994579610390359
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -212,5 +212,10 @@ PrefabInstance:
 --- !u!4 &2581860632957788450 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3415163039364116671, guid: 7c1862cb3946d6247b63c8981e13685e, type: 3}
+  m_PrefabInstance: {fileID: 914657473855803805}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &3030679467016450539 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2791852211431350390, guid: 7c1862cb3946d6247b63c8981e13685e, type: 3}
   m_PrefabInstance: {fileID: 914657473855803805}
   m_PrefabAsset: {fileID: 0}

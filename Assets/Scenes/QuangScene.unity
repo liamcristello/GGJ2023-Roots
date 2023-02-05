@@ -207,6 +207,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &437388964 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3030679467016450539, guid: 3d26c2ecb1c53e54e9ddbd4b996f2c4c, type: 3}
+  m_PrefabInstance: {fileID: 6256994580410315769}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &605812187 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6551879125823454233, guid: 3d26c2ecb1c53e54e9ddbd4b996f2c4c, type: 3}
@@ -347,7 +352,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1170765397}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.58, y: -0.78, z: 0}
+  m_LocalPosition: {x: 4.58, y: -0.78, z: -0.03}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -650,6 +655,11 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 6910907003157647064, guid: d7cde61a5692fc7469a90522e7898f91, type: 3}
   m_PrefabInstance: {fileID: 2461876669935576206}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1811691362 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3030679467016450539, guid: 3d26c2ecb1c53e54e9ddbd4b996f2c4c, type: 3}
+  m_PrefabInstance: {fileID: 1915915513}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1915915513
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -661,10 +671,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: BombFlowerPrefab (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 6256994579610390345, guid: 3d26c2ecb1c53e54e9ddbd4b996f2c4c, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6256994579610390358, guid: 3d26c2ecb1c53e54e9ddbd4b996f2c4c, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1069729548}
     - target: {fileID: 6256994579610390358, guid: 3d26c2ecb1c53e54e9ddbd4b996f2c4c, type: 3}
       propertyPath: bombFlower
       value: 
-      objectReference: {fileID: 2791852211431350390, guid: 7c1862cb3946d6247b63c8981e13685e, type: 3}
+      objectReference: {fileID: 1811691362}
+    - target: {fileID: 6256994579610390358, guid: 3d26c2ecb1c53e54e9ddbd4b996f2c4c, type: 3}
+      propertyPath: playerBomb
+      value: 
+      objectReference: {fileID: 1685742509}
     - target: {fileID: 6551879125823454233, guid: 3d26c2ecb1c53e54e9ddbd4b996f2c4c, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -762,25 +784,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2461876669654639490, guid: d7cde61a5692fc7469a90522e7898f91, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4651658208521343388, guid: d7cde61a5692fc7469a90522e7898f91, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 9019474398845789287, guid: d7cde61a5692fc7469a90522e7898f91, type: 3}
       propertyPath: m_Name
       value: PlayerObject
-      objectReference: {fileID: 0}
-    - target: {fileID: 9019474398845789287, guid: d7cde61a5692fc7469a90522e7898f91, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 9058751218080691570, guid: d7cde61a5692fc7469a90522e7898f91, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d7cde61a5692fc7469a90522e7898f91, type: 3}
@@ -795,10 +801,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: BombFlowerPrefab
       objectReference: {fileID: 0}
+    - target: {fileID: 6256994579610390345, guid: 3d26c2ecb1c53e54e9ddbd4b996f2c4c, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6256994579610390358, guid: 3d26c2ecb1c53e54e9ddbd4b996f2c4c, type: 3}
       propertyPath: player
       value: 
       objectReference: {fileID: 1069729548}
+    - target: {fileID: 6256994579610390358, guid: 3d26c2ecb1c53e54e9ddbd4b996f2c4c, type: 3}
+      propertyPath: bombFlower
+      value: 
+      objectReference: {fileID: 437388964}
     - target: {fileID: 6256994579610390358, guid: 3d26c2ecb1c53e54e9ddbd4b996f2c4c, type: 3}
       propertyPath: playerBomb
       value: 
@@ -825,7 +839,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6551879125823454233, guid: 3d26c2ecb1c53e54e9ddbd4b996f2c4c, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.17076826
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6551879125823454233, guid: 3d26c2ecb1c53e54e9ddbd4b996f2c4c, type: 3}
       propertyPath: m_LocalRotation.w
