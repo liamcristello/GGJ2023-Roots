@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
 //author: Quang
+//ATTACH MAIN CAMERA TO THE PLAYERBODY GAMEOBJECT FOR SWORD ROTATION TO WORK PROPERLY
+
 public class SwordBehavior : MonoBehaviour
 {
     [SerializeField] GameObject player;
@@ -11,6 +12,8 @@ public class SwordBehavior : MonoBehaviour
     
     Transform swordTransform;
     BoxCollider2D swordHB;
+    Vector2 positionOnScreen;//tracks player position
+    Vector2 mouseOnScreen;//tracks mouseposition
 
     float swordAngle;
 
@@ -23,6 +26,8 @@ public class SwordBehavior : MonoBehaviour
 
     private void Update()
     {
+        positionOnScreen = Camera.main.WorldToViewportPoint(player.transform.position);
+        mouseOnScreen = (Vector2)Camera.main.ScreenToViewportPoint(Input.mousePosition);
         rotateSword();
     }
 
@@ -42,8 +47,6 @@ public class SwordBehavior : MonoBehaviour
 
     void rotateSword()
     {
-        Vector2 positionOnScreen = Camera.main.WorldToViewportPoint(player.transform.position);
-        Vector2 mouseOnScreen = (Vector2)Camera.main.ScreenToViewportPoint(Input.mousePosition);
         swordAngle = AngleBetweenTwoPoints(positionOnScreen, mouseOnScreen);
         //Debug.Log(swordAngle);
 
