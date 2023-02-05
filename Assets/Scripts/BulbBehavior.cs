@@ -1,39 +1,40 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BulbBehavior : MonoBehaviour
 {
     public float timeToGrowSegment;
-    private float growthTimer;
-
     public GameObject growTarget;
-    public float rootGrowthSpeed;
+
     public GameObject rootOrigin;
     public GameObject rootEnd;
-    public GameObject damagedRootEnd;
+    public GameObject secondToLastRoot;
+
     public GameObject rootSegmentPrefab;
     public GameObject damagedRootSegmentPrefab;
+
     public List<GameObject> rootSegmentsList;
     public List<GameObject> damagedRootSegmentsList;
+
     public float rootGrowthStepX;
     public float rootGrowthStepY;
+
     public Animator rootEndAnim;
     public Animator damagedRootEndAnim;
+
     private bool isBeingDamaged;
     public float damageFlashDuration;
 
-    public bool atEnd;
+    public Slider plantSlider;
+
+    public GameObject gameOver;
 
     // Start is called before the first frame update
     void Start()
     {
-        growthTimer = 0.0f;
-        if (timeToGrowSegment <= 0.0f)
-        {
-            // Hard-coded default in event of float not being set
-            timeToGrowSegment = 4.0f;
-        }
+        gameOver.SetActive(false);
 
         SetGrowSpeed(timeToGrowSegment);
 
@@ -43,14 +44,6 @@ public class BulbBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        growthTimer += Time.deltaTime;
-
-        if (growthTimer > timeToGrowSegment && !rootEnd.GetComponent<RootEndBehavior>().atEnd)
-        {
-            //Grow();
-            growthTimer = 0.0f;
-        }
-
         if (Input.GetMouseButtonDown(0) && rootSegmentsList.Count > 1)
         {
             TakeDamage();
@@ -63,7 +56,7 @@ public class BulbBehavior : MonoBehaviour
         damagedRootEndAnim.speed = 1 / timeToGrowSegment;
     }
 
-    IEnumerator GrowRoots()
+    public IEnumerator GrowRoots()
     {
         yield return new WaitForSecondsRealtime(timeToGrowSegment);
 
@@ -76,6 +69,7 @@ public class BulbBehavior : MonoBehaviour
 
     void LengthenRoot()
     {
+        Debug.Log("Lengthening");
         foreach (var rootSegment in rootSegmentsList)
         {
             MoveSegment(rootSegment, false);
@@ -118,7 +112,6 @@ public class BulbBehavior : MonoBehaviour
 
     IEnumerator DamageVisual(GameObject damagedRootSegment, float duration)
     {
-        Debug.Log("Taking Damage!");
         isBeingDamaged = true;
         SpriteRenderer rend = damagedRootSegment.GetComponent<SpriteRenderer>();
         float alpha = 0.0f;
@@ -135,6 +128,7 @@ public class BulbBehavior : MonoBehaviour
         alpha = 1.0f;
         rend.color = new Color(rend.color.r, rend.color.g, rend.color.b, alpha);
 
+        // Same thing in reverse
         timeElapsed = 0;
         while (timeElapsed < duration)
         {
@@ -179,5 +173,24 @@ public class BulbBehavior : MonoBehaviour
 
         Destroy(damagedRootSegmentsList[damagedRootSegmentsList.Count - 1]);
         damagedRootSegmentsList.RemoveAt(damagedRootSegmentsList.Count - 1);
+    }
+
+    public void LerpPlantSlider(float feedVal)
+    {
+        if (plantSlider.value < 1.0f)
+        {
+            plantSlider.value = Mathf.Lerp(plantSlider.value, plantSlider.value + feedVal, Time.deltaTime);
+            Debug.Log("PLANT IS " + (plantSlider.value * 100) + "% FULL");
+
+            if (plantSlider.value >= 1.0f)
+            {
+                GameOver();
+            }
+        }
+    }
+
+    void GameOver()
+    {
+        gameOver.SetActive(true);
     }
 }
